@@ -206,7 +206,9 @@ binding if the wrong type has been applied by the Griffon runtime.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay nowrap"><code class="java language-java">Unresolved directive in modules.adoc - include::/Users/aalmiray/dev/github/griffon-plugins/griffon-fontawesome-plugin/subprojects/griffon-fontawesome-javafx-groovy/src/main/groovy/org/codehaus/griffon/runtime/fontawesome/FontAwesomeJavaFXGroovyModule.java[tags=bindings,indent=<span class="integer">0</span>]</code></pre>
+<pre class="CodeRay nowrap"><code class="java language-java">bind(BuilderCustomizer.class)
+    .to(FontAwesomeJavaFXBuilderCustomizer.class)
+    .asSingleton();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -241,7 +243,9 @@ binding if the wrong type has been applied by the Griffon runtime.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay nowrap"><code class="java language-java">Unresolved directive in modules.adoc - include::/Users/aalmiray/dev/github/griffon-plugins/griffon-fontawesome-plugin/subprojects/griffon-fontawesome-swing-groovy/src/main/java/org/codehaus/griffon/runtime/fontawesome/FontAwesomeSwingGroovyModule.java[tags=bindings,indent=<span class="integer">0</span>]</code></pre>
+<pre class="CodeRay nowrap"><code class="java language-java">bind(BuilderCustomizer.class)
+    .to(FontAwesomeSwingBuilderCustomizer.class)
+    .asSingleton();</code></pre>
 </div>
 </div>
 <div class="paragraph">
