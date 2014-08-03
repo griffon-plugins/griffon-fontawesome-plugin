@@ -4,7 +4,7 @@
 :subproject-base: {rootdir}/subprojects/griffon-fontawesome-
 :java-source: /src/main/java/
 :groovy-source: /src/main/groovy/
-:package-base: org/codehaus/griffon/runtime/fontawesome
+:package-base: org/codehaus/griffon/runtime/
 :numbered:
 
 The following sections display all bindings per module. Use this information to
@@ -19,7 +19,7 @@ Depends on: +javafx-groovy+
 
 [source,java,options="nowrap"]
 ----
-include::{subproject-base}javafx-groovy{groovy-source}{package-base}/FontAwesomeJavaFXGroovyModule.java[tags=bindings,indent=0]
+include::{subproject-base}javafx-groovy{groovy-source}{package-base}javafx/fontawesome/FontAwesomeJavaFXGroovyModule.java[tags=bindings,indent=0]
 ----
 
 The following nodes will become available on a GroovyFX View
@@ -38,7 +38,7 @@ Depends on: +swing-groovy+
 
 [source,java,options="nowrap"]
 ----
-include::{subproject-base}swing-groovy{java-source}{package-base}/FontAwesomeSwingGroovyModule.java[tags=bindings,indent=0]
+include::{subproject-base}swing-groovy{java-source}{package-base}swing/fontawesome/FontAwesomeSwingGroovyModule.java[tags=bindings,indent=0]
 ----
 
 The following nodes will become available on a GroovyFX View
