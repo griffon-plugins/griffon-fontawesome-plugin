@@ -1,0 +1,11 @@
+= griffon-fontawesome-plugin
+:version: 1.0.0.SNAPSHOT
+:linkattrs:
+
+image:https://travis-ci.org/griffon-plugins/griffon-fontawesome-plugin.png?branch=master["Build Status", link="https://travis-ci.org/griffon-plugins/griffon-fontawesome-plugin"]
+image:https://coveralls.io/repos/griffon-plugins/griffon-fontawesome-plugin/badge.png["Coverage Status", link="https://coveralls.io/r/griffon-plugins/griffon-fontawesome-plugin"]
+image:http://img.shields.io/:semver-{version}-red.svg["Semantic Versioning", link="http://semver.org"]
+
+---
+
+Font Awesome gives you scalable vector icons that can instantly be customized.

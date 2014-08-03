@@ -1,0 +1,6 @@
+
+[[_introduction]]
+= Introduction
+
+Font Awesome gives you scalable vector icons that can instantly be customized.
+This plugin enables toolkit specific icon support.

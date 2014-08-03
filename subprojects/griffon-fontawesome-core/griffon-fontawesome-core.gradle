@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+apply from: rootProject.file('gradle/code-coverage.gradle')
+
+dependencies {
+    compile "org.codehaus.griffon:griffon-core:$griffonVersion"
+    compile("org.webjars:font-awesome:$fontawesomeVersion") {
+        exclude group: 'org.webjars', module: 'bootstrap'
+    }
+}
+
+compileGroovy.enabled = false

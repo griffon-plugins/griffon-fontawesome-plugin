@@ -1,0 +1,18 @@
+include 'subprojects/griffon-fontawesome-core'
+include 'subprojects/griffon-fontawesome-swing'
+include 'subprojects/griffon-fontawesome-javafx'
+include 'subprojects/griffon-fontawesome-swing-groovy'
+include 'subprojects/griffon-fontawesome-javafx-groovy'
+include 'subprojects/griffon-fontawesome-guide'
+
+rootProject.name = 'griffon-fontawesome-plugin'
+rootProject.children.each { project ->
+    int slash = project.name.indexOf('/')
+    String fileBaseName = project.name[(slash+1)..-1]
+    String projectDirName = project.name
+    project.name = fileBaseName
+    project.projectDir = new File(settingsDir, projectDirName)
+    project.buildFileName = "${fileBaseName}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.isFile()
+}
