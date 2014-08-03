@@ -4,3 +4,6 @@
 
 Font Awesome gives you scalable vector icons that can instantly be customized.
 This plugin enables toolkit specific icon support.
+
+Currently supported FontAwesome version is +{fontawesome-version}+.
+

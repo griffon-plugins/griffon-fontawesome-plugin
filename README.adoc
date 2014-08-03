@@ -9,3 +9,6 @@ image:http://img.shields.io/:semver-{version}-red.svg["Semantic Versioning", lin
 ---
 
 Font Awesome gives you scalable vector icons that can instantly be customized.
+
+Refer to the link:http://griffon-plugins.github.io/griffon-fontawesome-plugin/[plugin guide, window="_blank"] for
+further information on configuration and usage.
