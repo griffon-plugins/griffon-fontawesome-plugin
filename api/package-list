@@ -1,0 +1,8 @@
+griffon.builder.javafx
+griffon.builder.swing
+griffon.builder.swing.factory
+griffon.javafx.support.fontawesome
+griffon.plugins.fontawesome
+griffon.swing.support.fontawesome
+org.codehaus.griffon.runtime.javafx.fontawesome
+org.codehaus.griffon.runtime.swing.fontawesome
