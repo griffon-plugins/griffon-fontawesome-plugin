@@ -67,7 +67,7 @@ bintray {
         name = project.name
         desc = project.projectDescription
         licenses = ['Apache-2.0']
-        labels = ['griffon', 'griffon-fontawesome-plugin']
+        labels = ['griffon', 'plugin', 'icons', 'swing', 'javafx', 'fontawesome']
         websiteUrl = project.projectWebsiteUrl
         issueTrackerUrl = project.projectIssueTrackerUrl
         vcsUrl = project.projectVcsUrl
