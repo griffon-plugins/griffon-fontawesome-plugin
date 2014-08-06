@@ -30,7 +30,7 @@ public class FontAwesomeIcon extends Label {
     private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf";
 
     static {
-        Font.loadFont(Thread.currentThread().getContextClassLoader().getResource(AWESOME_SET).toExternalForm(), 12);
+        Font.loadFont(Thread.currentThread().getContextClassLoader().getResource(AWESOME_SET).toExternalForm(), 16);
     }
 
     private final FontAwesome fontAwesome;

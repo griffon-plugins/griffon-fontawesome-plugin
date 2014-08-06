@@ -528,7 +528,7 @@ public enum FontAwesome {
     FA_YOUTUBE_SQUARE("fa-youtube-square", '\uf166');
 
     public static FontAwesome findByDescription(@Nonnull String description) {
-        requireNonBlank(description, "Icon description must be blank.");
+        requireNonBlank(description, "Icon description must not be blank.");
         for (FontAwesome font : values()) {
             if (font.getDescription().equals(description)) {
                 return font;

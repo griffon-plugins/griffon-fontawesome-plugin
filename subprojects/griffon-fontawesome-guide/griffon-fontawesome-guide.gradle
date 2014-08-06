@@ -149,7 +149,7 @@ asciidoctor {
             stylesheet              : 'css/style.css',
             'source-highlighter'    : 'coderay',
             'coderay-linenums-mode' : 'inline',
-            'project-name'          : 'Griffon Fontawesome Plugin',
+            'project-name'          : "${project.projectDescription} ${project.version}",
             'project-author'        : 'Andres Almiray',
             'project-version'       : project.version,
             'project-group'         : project.group,

@@ -22,7 +22,7 @@ import spock.lang.Specification
  * @author Andres Almiray
  */
 class FontAwesomeIconSpec extends Specification {
-    def 'Can create a FlagIcon instance'() {
+    def 'Can create a FontAwesomeIcon instance'() {
         given:
         FontAwesome expected = FontAwesome.FA_GITHUB
 

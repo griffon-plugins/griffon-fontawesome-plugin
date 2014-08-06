@@ -27,7 +27,7 @@ class FontAwesomeIconSpec extends Specification {
         new JFXPanel()
     }
 
-    def 'Can create a FlagIcon instance'() {
+    def 'Can create a FontAwesomeIcon instance'() {
         given:
         FontAwesome expected = FontAwesome.FA_GITHUB
 
