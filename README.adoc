@@ -6,12 +6,6 @@ image:http://img.shields.io/travis/griffon-plugins/griffon-fontawesome-plugin/ma
 image:http://img.shields.io/coveralls/griffon-plugins/griffon-fontawesome-plugin/master.svg["Coverage Status", link="https://coveralls.io/r/griffon-plugins/griffon-fontawesome-plugin"]
 image:http://img.shields.io/:semver-{version}-blue.svg["Semantic Versioning", link="http://semver.org"]
 image:http://img.shields.io/badge/license-ASF2-blue.svg["Apache License 2", link="http://www.apache.org/licenses/LICENSE-2.0.txt"]
-++++
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="theaviary" data-dnt="true">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<a href="https://twitter.com/theaviary" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @theaviary</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-++++
 
 ---
 
