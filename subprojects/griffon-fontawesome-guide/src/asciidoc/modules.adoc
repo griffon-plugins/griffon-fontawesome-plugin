@@ -13,9 +13,9 @@ binding if the wrong type has been applied by the Griffon runtime.
 
 == JavaFX
 
-Module name: +fontawesome-javafx-groovy+
+Module name: `fontawesome-javafx-groovy`
 
-Depends on: +javafx-groovy+
+Depends on: `javafx-groovy`
 
 [source,java,options="nowrap"]
 ----
@@ -27,14 +27,14 @@ The following nodes will become available on a Groovy View
 [options="2*,header"]
 |===
 | Node            | Type
-| fontAwesomeIcon | +{api_link_fontawesome_icon_javafx}+
+| fontAwesomeIcon | `{api_link_fontawesome_icon_javafx}`
 |===
 
 == Swing
 
-Module name: +fontawesome-swing-groovy+
+Module name: `fontawesome-swing-groovy`
 
-Depends on: +swing-groovy+
+Depends on: `swing-groovy`
 
 [source,java,options="nowrap"]
 ----
@@ -46,6 +46,6 @@ The following nodes will become available on a Groovy View
 [options="2*,header"]
 |===
 | Node            | Type
-| fontAwesomeIcon | +{api_link_fontawesome_icon_swing}+
+| fontAwesomeIcon | `{api_link_fontawesome_icon_swing}`
 |===
 

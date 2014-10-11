@@ -40,7 +40,7 @@ import static java.util.Objects.requireNonNull;
  * @author Andres Almiray
  */
 public class FontAwesomeIcon implements Icon {
-    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf";
+    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf";
 
     private static final Font awesome;
     private static final Object LOCK = new Object[0];

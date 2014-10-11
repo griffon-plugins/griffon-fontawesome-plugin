@@ -27,7 +27,7 @@ import static griffon.util.GriffonClassUtils.requireState;
  * @author Andres Almiray
  */
 public class FontAwesomeIcon extends Label {
-    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf";
+    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf";
 
     static {
         Font.loadFont(Thread.currentThread().getContextClassLoader().getResource(AWESOME_SET).toExternalForm(), 16);
