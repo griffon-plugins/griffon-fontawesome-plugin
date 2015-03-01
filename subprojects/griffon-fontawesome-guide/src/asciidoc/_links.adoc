@@ -2,5 +2,5 @@
 :link_fontawesome: link:http://fortawesome.github.io/Font-Awesome/[Font Awesome, window="_blank"]
 :api_link_fontawesome_icon_javafx: link:api/griffon/javafx/support/fontawesome/FontAwesomeIcon.html[griffon.javafx.support.fontawesome.FontAwesomeIcon, window="_blank"]
 :api_link_fontawesome_icon_swing: link:api/griffon/swing/support/fontawesome/FontAwesomeIcon.html[griffon.swing.support.fontawesome.FontAwesomeIcon, window="_blank"]
-:link_cheat_sheet: link:http://fortawesome.github.io/Font-Awesome/cheatsheet/[Font Awesome Cheat Sheet, window="_blank"]
+:link_cheat_sheet: link:http://fortawesome.github.io/Font-Awesome/icons/[Font Awesome Cheat Sheet, window="_blank"]
 

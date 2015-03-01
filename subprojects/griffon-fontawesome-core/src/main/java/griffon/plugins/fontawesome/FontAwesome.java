@@ -612,10 +612,13 @@ public enum FontAwesome {
     FA_YOUTUBE_PLAY("fa-youtube-play", '\uf16a'),
     FA_YOUTUBE_SQUARE("fa-youtube-square", '\uf166');
 
+    private static final String ERROR_DESCRIPTION_BLANK = "Argument 'description' must not be blank";
+
     public static FontAwesome findByDescription(@Nonnull String description) {
         requireNonBlank(description, "Icon description must not be blank.");
+        String[] parts = description.split(":");
         for (FontAwesome font : values()) {
-            if (font.getDescription().equals(description)) {
+            if (font.getDescription().equals(parts[0])) {
                 return font;
             }
         }
@@ -637,5 +640,17 @@ public enum FontAwesome {
 
     public char getCode() {
         return code;
+    }
+
+    @Nonnull
+    public static IllegalArgumentException invalidDescription(@Nonnull String description) {
+        requireNonBlank(description, ERROR_DESCRIPTION_BLANK);
+        throw new IllegalArgumentException("Description " + description + " is not a valid FontAwesome icon description");
+    }
+
+    @Nonnull
+    public static IllegalArgumentException invalidDescription(@Nonnull String description, Exception e) {
+        requireNonBlank(description, ERROR_DESCRIPTION_BLANK);
+        throw new IllegalArgumentException("Description " + description + " is not a valid FontAwesome icon description", e);
     }
 }

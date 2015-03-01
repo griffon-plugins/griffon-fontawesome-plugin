@@ -9,7 +9,15 @@ image:https://api.bintray.com/packages/griffon/griffon-plugins/{project-name}/im
 
 ---
 
-Font Awesome gives you scalable vector icons that can instantly be customized.
+link:http://fortawesome.github.io/Font-Awesome/[Font Awesome, window="_blank"] gives you scalable vector icons that can instantly be customized.
 
 Refer to the link:http://griffon-plugins.github.io/{project-name}/[plugin guide, window="_blank"] for
 further information on configuration and usage.
+
+FontAwesome by Dave Gandy (@davegandy)
+
+Font License: SIL OFL 1.1 (http://scripts.sil.org/OFL) +
+Applies to all font files
+
+Code License: MIT (http://opensource.org/licenses/mit-license.html) +
+Applies to all CSS files

@@ -15,6 +15,7 @@
  */
 package griffon.swing.support.fontawesome;
 
+import griffon.core.editors.PropertyEditorResolver;
 import griffon.plugins.fontawesome.FontAwesome;
 
 import javax.annotation.Nonnull;
@@ -28,9 +29,12 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyEditor;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static griffon.plugins.fontawesome.FontAwesome.invalidDescription;
+import static griffon.util.GriffonNameUtils.requireNonBlank;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -41,11 +45,14 @@ import static java.util.Objects.requireNonNull;
  */
 public class FontAwesomeIcon implements Icon {
     private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf";
+    private static final String ERROR_FONT_AWESOME_NULL = "Argument 'fontAwesome' must not be null";
 
-    private static final Font awesome;
+    private static final Font AWESOME;
     private static final Object LOCK = new Object[0];
 
     private int size;
+    private int width;
+    private int height;
     private BufferedImage buffer;
 
     private FontAwesome fontAwesome;
@@ -55,26 +62,43 @@ public class FontAwesomeIcon implements Icon {
     static {
         try {
             InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(AWESOME_SET);
-            awesome = Font.createFont(Font.TRUETYPE_FONT, stream);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(awesome);
+            AWESOME = Font.createFont(Font.TRUETYPE_FONT, stream);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(AWESOME);
             stream.close();
         } catch (FontFormatException | IOException ffe) {
             throw new RuntimeException(ffe);
         }
     }
 
+    public FontAwesomeIcon() {
+        this(FontAwesome.FA_STAR);
+    }
+
     public FontAwesomeIcon(@Nonnull FontAwesome fontAwesome) {
-        this.fontAwesome = requireNonNull(fontAwesome, "Argument 'fontAwesome' must not be null.");
+        this.fontAwesome = requireNonNull(fontAwesome, ERROR_FONT_AWESOME_NULL);
         setSize(16);
     }
 
     public FontAwesomeIcon(@Nonnull String description) {
         this(FontAwesome.findByDescription(description));
+        resolveSize(description);
+        resolveColor(description);
     }
 
     @Nonnull
     public FontAwesome getFontAwesome() {
         return fontAwesome;
+    }
+
+    public void setFontAwesome(@Nonnull FontAwesome fontAwesome) {
+        this.fontAwesome = requireNonNull(fontAwesome, ERROR_FONT_AWESOME_NULL);
+    }
+
+    public void setFontAwesome(@Nonnull String description) {
+        requireNonBlank(description, "Argument 'description' must not be blank");
+        setFontAwesome(FontAwesome.findByDescription(description));
+        resolveSize(description);
+        resolveColor(description);
     }
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -107,7 +131,17 @@ public class FontAwesomeIcon implements Icon {
     public void setSize(int size) {
         if (size > 0) {
             this.size = size;
-            font = awesome.deriveFont(Font.PLAIN, size);
+            font = AWESOME.deriveFont(Font.PLAIN, size);
+
+            BufferedImage tmp = new BufferedImage(size, size,
+                BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2 = GraphicsEnvironment.getLocalGraphicsEnvironment().createGraphics(tmp);
+            g2.setFont(font);
+            this.width = g2.getFontMetrics().charWidth(fontAwesome.getCode());
+            this.height = g2.getFontMetrics().getHeight();
+
+            g2.dispose();
+
             synchronized (LOCK) {
                 buffer = null;
             }
@@ -128,10 +162,35 @@ public class FontAwesomeIcon implements Icon {
     }
 
     public int getIconHeight() {
-        return size;
+        return height;
     }
 
     public int getIconWidth() {
-        return size;
+        return width;
+    }
+
+    private void resolveSize(String description) {
+        String[] parts = description.split(":");
+        if (parts.length > 1) {
+            try {
+                setSize(Integer.parseInt(parts[1]));
+            } catch (NumberFormatException e) {
+                throw invalidDescription(description, e);
+            }
+        } else {
+            setSize(16);
+        }
+    }
+
+    private void resolveColor(String description) {
+        String[] parts = description.split(":");
+        if (parts.length > 2) {
+            PropertyEditor editor = PropertyEditorResolver.findEditor(Color.class);
+            editor.setValue(parts[2]);
+            Color color = (Color) editor.getValue();
+            if (color != null) {
+                setColor(color);
+            }
+        }
     }
 }

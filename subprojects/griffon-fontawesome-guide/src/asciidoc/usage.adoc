@@ -1,0 +1,68 @@
+
+[[_usage]]
+= Usage
+
+== Swing
+
+The `griffon-fontawesome-swing:{project-version}` JAR provides a new Icon class: `{api_link_fontawesome_icon_swing}`.
+You may use this class with any Swing component that supports an Icon property.
+
+== JavaFX
+
+The `griffon-fontawesome-javafx:{project-version}` JAR provides a new Node class: `{api_link_fontawesome_icon_javafx}`.
+You may use this class with any JavaFX control that accepts a graphic property. You may also use the icon directly as
+it is a subclass of `javafx.scene.control.Label`. The icon class can be used inside an FXML file too.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import griffon.javafx.support.fontawesome.FontAwesomeIcon?>
+
+<GridPane prefHeight="60.0" prefWidth="200.0"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.example.AppController">
+    <children>
+        <Button fx:id="preferencesActionTarget"
+                GridPane.columnIndex="0" GridPane.rowIndex="0"
+                mnemonicParsing="false"
+                prefWidth="200.0">
+            <graphic>
+                <FontAwesomeIcon fontAwesome="FA_GEAR"/>
+            </graphic>
+        </Button>
+    </children>
+</GridPane>
+----
+
+The JavaFX icon requires the usage of the `FontAwesome` enum value.
+
+== Action Resources
+
+Action icons can be set using resources files if the following format is used:
+
+[source]
+----
+iconClassName|name:size:color
+----
+
+`size` and `color` are optional.
+
+Here's an example using the Swing icon
+
+[source,java]
+.griffon-app/i18n/messages.properties
+----
+org.example.AppController.action.Preferences.small_icon=griffon.swing.support.fontawesome.FontAwesomeIcon|fa-gear
+----
+
+The JavaFX version for the same icon value is
+
+[source,java]
+.griffon-app/i18n/messages.properties
+----
+org.example.AppController.action.Preferences.icon=griffon.javafx.support.fontawesome.FontAwesomeIcon|fa-gear
+----
+
