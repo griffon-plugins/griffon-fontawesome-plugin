@@ -73,7 +73,7 @@ task apiDocs(type: Javadoc, dependsOn: copyDocs) {
                            'http://docs.oracle.com/javase/7/docs/api/',
                            'http://jsr-305.googlecode.com/svn/trunk/javadoc/',
                            'http://atinject.googlecode.com/svn/trunk/javadoc/',
-                           'http://new.griffon-framework.org/guide/latest/api/']
+                           'http://griffon-framework.org/guide/latest/api/']
 
     doLast { task ->
         copy {

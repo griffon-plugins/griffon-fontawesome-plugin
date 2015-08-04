@@ -33,7 +33,7 @@ import static java.util.Objects.requireNonNull;
  * @author Andres Almiray
  */
 public class FontAwesomeIcon extends Text {
-    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf";
+    private static final String AWESOME_SET = "META-INF/resources/webjars/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf";
     private static final String ERROR_FONT_AWESOME_NULL = "Argument 'fontAwesome' must not be null";
 
     static {

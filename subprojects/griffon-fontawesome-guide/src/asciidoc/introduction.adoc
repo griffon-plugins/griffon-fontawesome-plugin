@@ -15,3 +15,5 @@ Applies to all font files
 Code License: MIT (http://opensource.org/licenses/mit-license.html) +
 Applies to all CSS files
 
+Griffon version: {griffon-version}
+
