@@ -3,6 +3,7 @@ apply from: rootProject.file('gradle/code-coverage.gradle')
 
 dependencies {
     compile project(':griffon-fontawesome-core')
+    compile "org.codehaus.griffon.plugins:griffon-fonticons-support-swing:${fonticonsVersion}"
 }
 
 compileGroovy.enabled = false

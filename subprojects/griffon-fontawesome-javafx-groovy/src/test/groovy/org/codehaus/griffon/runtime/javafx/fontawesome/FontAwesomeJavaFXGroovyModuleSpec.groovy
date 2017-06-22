@@ -64,7 +64,7 @@ class FontAwesomeJavaFXGroovyModuleSpec extends Specification {
         FontAwesomeIcon faIcon = builder.fontAwesomeIcon(value, icon: icon)
 
         then:
-        faIcon.fontAwesome == expected
+        faIcon.iconValue == expected
 
         where:
         value                 | icon                  || expected

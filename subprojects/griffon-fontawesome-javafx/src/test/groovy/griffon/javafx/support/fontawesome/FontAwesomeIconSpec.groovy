@@ -33,7 +33,7 @@ class FontAwesomeIconSpec extends Specification {
 
         expect:
         FontAwesomeIcon faIcon = new FontAwesomeIcon(expected)
-        faIcon.fontAwesome == expected
+        faIcon.iconValue == expected
     }
 
     def 'Invalid FontAwesomeIcon arguments'() {

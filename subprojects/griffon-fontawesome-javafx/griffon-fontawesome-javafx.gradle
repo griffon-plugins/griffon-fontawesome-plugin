@@ -6,6 +6,7 @@ dependencies {
     compileOnly project.files(project.jfxrtLocation)
 
     compile project(':griffon-fontawesome-core')
+    compile "org.codehaus.griffon.plugins:griffon-fonticons-support-javafx:${fonticonsVersion}"
     testCompile project.files(project.jfxrtLocation)
 }
 

@@ -30,7 +30,7 @@ it is a subclass of `javafx.scene.control.Label`. The icon class can be used ins
                 mnemonicParsing="false"
                 prefWidth="200.0">
             <graphic>
-                <FontAwesomeIcon fontAwesome="FA_GEAR"/>
+                <FontAwesomeIcon iconValue="FA_GEAR"/>
             </graphic>
         </Button>
     </children>
@@ -45,7 +45,7 @@ Action icons can be set using resources files if the following format is used:
 
 [source]
 ----
-iconClassName|name:size:color
+iconClassName|value:size:color
 ----
 
 `size` and `color` are optional.
@@ -55,7 +55,7 @@ Here's an example using the Swing icon
 [source,java]
 .griffon-app/i18n/messages.properties
 ----
-org.example.AppController.action.Preferences.small_icon=griffon.swing.support.fontawesome.FontAwesomeIcon|fa-gear
+application.action.Preferences.small_icon=griffon.swing.support.fontawesome.FontAwesomeIcon|fa-gear
 ----
 
 The JavaFX version for the same icon value is
@@ -63,6 +63,18 @@ The JavaFX version for the same icon value is
 [source,java]
 .griffon-app/i18n/messages.properties
 ----
-org.example.AppController.action.Preferences.icon=griffon.javafx.support.fontawesome.FontAwesomeIcon|fa-gear
+application.action.Preferences.icon=griffon.javafx.support.fontawesome.FontAwesomeIcon|fa-gear
 ----
+
+The following properties are available using CSS
+
+[cols="4*", options="header"]
+|===
+| CSS Property   | Icon Property | Values                    | Default
+| -fx-icon-value | iconValue     | <FontAwesome description> | fa-star
+| -fx-icon-size  | iconSize      | <size>                    | 16
+| -fx-icon-color | iconColor     | <paint>                   | Color.BLACK
+|===
+
+FontAwesomeIcon has the following CSS classes: `font-icon`, `fontawesome-icon`.
 

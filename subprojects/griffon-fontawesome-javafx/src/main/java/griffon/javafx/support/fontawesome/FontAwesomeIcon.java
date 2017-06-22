@@ -15,68 +15,51 @@
  */
 package griffon.javafx.support.fontawesome;
 
-import griffon.core.editors.PropertyEditorResolver;
+import com.sun.javafx.css.converters.EnumConverter;
+import griffon.javafx.support.AbstractFontIcon;
 import griffon.plugins.fontawesome.FontAwesome;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleableObjectProperty;
+import javafx.css.StyleableProperty;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import javax.annotation.Nonnull;
-import java.beans.PropertyEditor;
+import java.util.ArrayList;
+import java.util.List;
 
-import static griffon.plugins.fontawesome.FontAwesome.invalidDescription;
-import static griffon.util.GriffonClassUtils.requireState;
 import static griffon.util.GriffonNameUtils.requireNonBlank;
+import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 /**
  * @author Andres Almiray
  */
-public class FontAwesomeIcon extends Text {
-    private static final String FONTAWESOME_SET = "META-INF/resources/webjars/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf";
-    private static final String ERROR_FONTAWESOME_NULL = "Argument 'fontAwesome' must not be null";
-
-    private static final String FONTAWESOME_FONT_FAMILY;
+public class FontAwesomeIcon extends AbstractFontIcon {
+    private static final String FONT_RESOURCE = "META-INF/resources/webjars/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf";
+    private static final String ERROR_FONT_NULL = "Argument 'fontAwesome' must not be null";
+    private static final String FONT_FAMILY;
 
     static {
-        Font font = Font.loadFont(Thread.currentThread().getContextClassLoader().getResource(FONTAWESOME_SET).toExternalForm(), 16);
-        FONTAWESOME_FONT_FAMILY = font.getFamily();
+        Font font = Font.loadFont(Thread.currentThread().getContextClassLoader().getResource(FONT_RESOURCE).toExternalForm(), 16);
+        FONT_FAMILY = font.getFamily();
     }
 
-    private ObjectProperty<FontAwesome> fontAwesome;
-    private IntegerProperty iconSize;
-    private ObjectProperty<Paint> iconColor;
+    private StyleableObjectProperty<FontAwesome> iconValue;
 
-    private ChangeListener<Number> iconSizeChangeListener = new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> v, Number o, Number n) {
-            setStyle(getStyle() + " -fx-font-size: " + n + "px;");
-        }
-    };
-
-    private ChangeListener<Paint> iconColorChangeListener = new ChangeListener<Paint>() {
-        @Override
-        public void changed(ObservableValue<? extends Paint> v, Paint o, Paint n) {
-            setFill(n);
-        }
-    };
+    private ChangeListener<FontAwesome> iconValueChangeListener = (v, o, n) -> setIconValue(n);
 
     public FontAwesomeIcon() {
         this(FontAwesome.FA_STAR);
     }
 
     public FontAwesomeIcon(@Nonnull FontAwesome fontAwesome) {
-        setFontAwesome(requireNonNull(fontAwesome, ERROR_FONTAWESOME_NULL));
-        getStyleClass().add("fontawesome-icon");
-        setText(String.valueOf(fontAwesome.getCode()));
-        setStyle("-fx-font-family: '" + FONTAWESOME_FONT_FAMILY + "';");
+        getStyleClass().addAll("fontawesome-icon", "font-icon");
+        setStyle("-fx-font-family: '" + FONT_FAMILY + "';");
+        setIconValue(requireNonNull(fontAwesome, ERROR_FONT_NULL));
         setIconSize(16);
         setIconColor(Color.BLACK);
     }
@@ -87,99 +70,115 @@ public class FontAwesomeIcon extends Text {
         resolvePaint(description);
     }
 
-    public ObjectProperty<FontAwesome> fontAwesomeProperty() {
-        if (fontAwesome == null) {
-            fontAwesome = new SimpleObjectProperty<>(this, "fontAwesome", null);
+    @Nonnull
+    public ObjectProperty<FontAwesome> iconValueProperty() {
+        if (iconValue == null) {
+            iconValue = new StyleableObjectProperty<FontAwesome>() {
+                @Override
+                public CssMetaData getCssMetaData() {
+                    return StyleableProperties.VALUE;
+                }
+
+                @Override
+                public Object getBean() {
+                    return FontAwesomeIcon.this;
+                }
+
+                @Override
+                public String getName() {
+                    return "iconValue";
+                }
+            };
+            iconValue.addListener(iconValueChangeListener);
         }
-        return fontAwesome;
-    }
-
-    public ObjectProperty<FontAwesome> getFontAwesomeProperty() {
-        return fontAwesomeProperty();
-    }
-
-    public IntegerProperty iconSizeProperty() {
-        if (iconSize == null) {
-            iconSize = new SimpleIntegerProperty(this, "iconSize", 16);
-            iconSize.addListener(iconSizeChangeListener);
-        }
-        return iconSize;
-    }
-
-    public IntegerProperty getIconSizeProperty() {
-        return iconSizeProperty();
-    }
-
-    public ObjectProperty<Paint> iconColorProperty() {
-        if (iconColor == null) {
-            iconColor = new SimpleObjectProperty<>(this, "iconColor", null);
-            iconColor.addListener(iconColorChangeListener);
-        }
-        return iconColor;
-    }
-
-    public ObjectProperty<Paint> getIconColorProperty() {
-        return iconColorProperty();
+        return iconValue;
     }
 
     @Nonnull
-    public FontAwesome getFontAwesome() {
-        return fontAwesomeProperty().get();
+    public ObjectProperty<FontAwesome> getIconValueProperty() {
+        return iconValueProperty();
     }
 
-    public void setFontAwesome(@Nonnull FontAwesome fontAwesome) {
-        fontAwesomeProperty().set(requireNonNull(fontAwesome, ERROR_FONTAWESOME_NULL));
+    @Nonnull
+    public FontAwesome getIconValue() {
+        return iconValueProperty().get();
+    }
+
+    public void setIconValue(@Nonnull FontAwesome fontAwesome) {
+        iconValueProperty().set(requireNonNull(fontAwesome, ERROR_FONT_NULL));
         setText(String.valueOf(fontAwesome.getCode()));
     }
 
+    @Nonnull
+    @Deprecated
+    public ObjectProperty<FontAwesome> fontAwesomeProperty() {
+        return iconValueProperty();
+    }
+
+    @Nonnull
+    @Deprecated
+    public ObjectProperty<FontAwesome> getFontAwesomeProperty() {
+        return iconValueProperty();
+    }
+
+    @Nonnull
+    @Deprecated
+    public FontAwesome getFontAwesome() {
+        return iconValueProperty().get();
+    }
+
+    @Deprecated
+    public void setFontAwesome(@Nonnull FontAwesome fontAwesome) {
+        iconValueProperty().set(requireNonNull(fontAwesome, ERROR_FONT_NULL));
+        setText(String.valueOf(fontAwesome.getCode()));
+    }
+
+    @Deprecated
     public void setFontAwesome(@Nonnull String description) {
-        requireNonBlank(description, "Argument 'description' must not be blank");
-        fontAwesomeProperty().set(FontAwesome.findByDescription(description));
+        requireNonBlank(description, ERROR_DESCRIPTION_BLANK);
+        iconValueProperty().set(FontAwesome.findByDescription(description));
         resolveSize(description);
         resolvePaint(description);
     }
 
-    public void setIconSize(int size) {
-        requireState(size > 0, "Argument 'size' must be greater than zero.");
-        iconSizeProperty().set(size);
+    @Override
+    protected RuntimeException invalidDescription(@Nonnull String description, @Nonnull Exception exception) throws RuntimeException {
+        return FontAwesome.invalidDescription(description, exception);
     }
 
-    public int getIconSize() {
-        return iconSizeProperty().get();
-    }
+    private static class StyleableProperties {
+        private static final CssMetaData<FontAwesomeIcon, FontAwesome> VALUE =
+            new CssMetaData<FontAwesomeIcon, FontAwesome>("-fx-icon-value",
+                new EnumConverter<>(FontAwesome.class), FontAwesome.FA_STAR) {
 
-    public void setIconColor(@Nonnull Paint color) {
-        requireNonNull(color, "Argument 'color' must not be null");
-        iconColorProperty().set(color);
+                @Override
+                public boolean isSettable(FontAwesomeIcon node) {
+                    return true;
+                }
+
+                @Override
+                public StyleableProperty<FontAwesome> getStyleableProperty(FontAwesomeIcon icon) {
+                    return (StyleableProperty<FontAwesome>) icon.iconValueProperty();
+                }
+            };
+
+        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
+
+        static {
+            final List<CssMetaData<? extends Styleable, ?>> styleables =
+                new ArrayList<>(AbstractFontIcon.getClassCssMetaData());
+            styleables.add(VALUE);
+            STYLEABLES = unmodifiableList(styleables);
+        }
     }
 
     @Nonnull
-    public Paint getIconColor() {
-        return iconColorProperty().get();
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return StyleableProperties.STYLEABLES;
     }
 
-    private void resolveSize(String description) {
-        String[] parts = description.split(":");
-        if (parts.length > 1) {
-            try {
-                setIconSize(Integer.parseInt(parts[1]));
-            } catch (NumberFormatException e) {
-                throw invalidDescription(description, e);
-            }
-        } else {
-            setIconSize(16);
-        }
-    }
-
-    private void resolvePaint(String description) {
-        String[] parts = description.split(":");
-        if (parts.length > 2) {
-            PropertyEditor editor = PropertyEditorResolver.findEditor(Paint.class);
-            editor.setValue(parts[2]);
-            Paint paint = (Paint) editor.getValue();
-            if (paint != null) {
-                setIconColor(paint);
-            }
-        }
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
+        return FontAwesomeIcon.getClassCssMetaData();
     }
 }

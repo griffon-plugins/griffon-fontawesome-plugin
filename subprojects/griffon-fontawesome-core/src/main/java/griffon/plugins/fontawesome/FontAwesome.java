@@ -22,7 +22,7 @@ import static griffon.util.GriffonNameUtils.requireNonBlank;
 /**
  * @author Andres Almiray
  */
-public enum FontAwesome {
+public enum FontAwesome implements FontValue {
     // last is f280
     FA_500PX("fa-500px", '\uf26e'),
     FA_ADJUST("fa-adjust", '\uf042'),
